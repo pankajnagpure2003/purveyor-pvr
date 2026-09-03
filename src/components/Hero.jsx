@@ -324,7 +324,7 @@ export default function Hero() {
                   ease: 'easeInOut',
                 },
               }}
-              className="relative z-10 font-mono text-[9px] sm:text-xs tracking-[0.12em] sm:tracking-[0.18em] uppercase text-[#FFCB72] hero-label"
+              className="relative z-10 font-mono text-[9px] sm:text-xs tracking-[0.12em] sm:tracking-[0.19em] uppercase text-[#FFCB72] hero-label"
             >
               Fintech &amp; Real-World Asset Ecosystem
             </motion.p>
@@ -399,12 +399,9 @@ export default function Hero() {
             className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-10 sm:mb-14 md:mb-16"
           >
 
-            <a
-              href="#contract"
-              className="btn-shimmer w-full sm:w-auto px-5 py-3.5 rounded-full bg-gold-400 text-ink-950 font-bold hover:bg-gold-300 transition-colors duration-200 text-center"
-            >
-              Buy PVR Now
-            </a>
+           <a href="#contract" className="btn-shimmer w-full sm:w-auto px-5 py-3.5 rounded-full bg-gold-400 text-ink-950 font-semibold tracking-wide hover:bg-gold-300 transition-colors duration-200 text-center">
+  Buy PVR Now
+</a>
 
             <a
               href="#faq"
@@ -502,7 +499,7 @@ export default function Hero() {
           }}
           onMouseMove={handleCoinMove}
           onMouseLeave={handleCoinLeave}
-          className="coin-scene relative mx-auto mt-2 sm:mt-4 md:mt-6 lg:mt-0 lg:mx-0"
+          className="coin-scene relative mx-auto mt-2 sm:mt-4 md:mt-6 lg:mt-0 lg:mx-0 hidden lg:flex"
         >
 
           <div ref={auraRef} className="coin-aura" />

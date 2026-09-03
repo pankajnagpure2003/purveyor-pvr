@@ -32,7 +32,7 @@ const pillars = [
 
 export default function About() {
   return (
-    <section id="about" className="relative py-20 lg:py-100 overflow-hidden">
+    <section id="about" className="relative py-10 lg:py-100 overflow-hidden">
       <Watermark position="top-left" size={420} direction={1} opacity={0.045} />
 
       <div className="relative z-10 mx-auto max-w-12xl px-6 lg:px-10">

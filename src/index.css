@@ -640,3 +640,22 @@ body {
     height: 155px;
   }
 }
+
+/* =========================================
+   COIN HIDDEN ON MOBILE + TABLET
+   DESKTOP (1024px+) REMAINS UNCHANGED
+   ========================================= */
+@media screen and (max-width: 1023px) {
+  .coin-scene {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
