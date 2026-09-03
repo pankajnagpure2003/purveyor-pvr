@@ -105,14 +105,14 @@ export default function Footer() {
               Official Website
             </h5>
 
-            <a
-              href="https://purveyorpvr.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block max-w-full break-all text-xs leading-5 text-bone/55 transition-colors duration-200 hover:text-gold-300 sm:text-sm"
-            >
-              purveyorpvr.com
-            </a>
+           <a
+  href="https://purveyor-pvr.vercel.app/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hover:text-gold-300 transition-colors duration-300"
+>
+  Website
+</a>
 
 
             {/* Contract */}
