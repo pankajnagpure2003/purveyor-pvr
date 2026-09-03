@@ -1,5 +1,5 @@
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import coin from '../assets/coin.png'
 import CountUp from './CountUp'
@@ -34,6 +34,45 @@ const particulates = [
   { left: '78%', top: '78%', size: 3 },
   { left: '18%', top: '78%', size: 3 },
 ]
+
+function SubHeading({ reduceMotion }) {
+  const [textPart, setTextPart] = useState(0)
+
+  useEffect(() => {
+    if (reduceMotion) return
+
+    const timer = setInterval(() => {
+      setTextPart((prev) => (prev === 0 ? 1 : 0))
+    }, 3000)
+
+    return () => clearInterval(timer)
+  }, [reduceMotion])
+
+  return (
+    <div className="relative min-h-[40px] sm:min-h-[48px] md:min-h-[52px] mb-5 sm:mb-6 ml-0 sm:ml-[10px]">
+      <AnimatePresence mode="wait">
+        <motion.h2
+          key={textPart}
+          initial={reduceMotion ? false : { opacity: 0, y: 16, filter: 'blur(5px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          exit={reduceMotion ? undefined : { opacity: 0, y: -16, filter: 'blur(5px)' }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-0 flex items-center font-display text-base sm:text-xl md:text-2xl lg:text-2xl font-semibold tracking-[0.02em] text-gold-300/95"
+        >
+          {textPart === 0 ? (
+            <>
+              Connecting <span className="ml-1">real-world value</span>
+            </>
+          ) : (
+            <>
+              with <span className="ml-1">digital finance</span>
+            </>
+          )}
+        </motion.h2>
+      </AnimatePresence>
+    </div>
+  )
+}
 
 export default function Hero() {
   const ref = useRef(null)
@@ -369,15 +408,8 @@ export default function Hero() {
 
           </h1>
 
-          {/* SUB HEADING */}
-          <motion.h2
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.75 }}
-            className="font-display text-base sm:text-xl md:text-2xl lg:text-2xl font-semibold tracking-[0.02em] text-gold-300/95 mb-5 sm:mb-6 ml-0 sm:ml-[10px]"
-          >
-            Connecting real-world value with digital finance
-          </motion.h2>
+          {/* SUB HEADING - TWO PART LOOPING ANIMATION */}
+          <SubHeading reduceMotion={reduceMotion} />
 
           {/* DESCRIPTION */}
           <motion.p
