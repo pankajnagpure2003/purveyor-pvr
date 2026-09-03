@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import Reveal from './Reveal'
 import Watermark from './Watermark'
-import token from "../assets/content.png";
+import token from "../assets/content.webp";
 
 const INFO = [
   ['Token Name', 'Purveyor'],

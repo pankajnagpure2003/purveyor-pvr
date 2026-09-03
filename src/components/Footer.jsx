@@ -1,4 +1,4 @@
-import logoVertical from '../assets/logo-horizontal.png'
+import logoVertical from '../assets/logo-horizontal.webp'
 
 const QUICK_LINKS = [
   'Home',

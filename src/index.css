@@ -659,3 +659,23 @@ body {
     padding: 0 !important;
   }
 }
+
+
+/* Performance helpers */
+img {
+  max-width: 100%;
+}
+
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
+}
+
+.coin-scene,
+.coin-core,
+.coin-orbit-ring,
+.coin-aura,
+.hero-orb,
+.hero-ring {
+  will-change: transform;
+}

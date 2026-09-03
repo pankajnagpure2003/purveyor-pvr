@@ -7,4 +7,11 @@ export default defineConfig({
     port: 5173,
     open: true,
   },
+  build: {
+    target: 'es2020',
+    cssMinify: 'esbuild',
+    sourcemap: false,
+    reportCompressedSize: true,
+    chunkSizeWarningLimit: 800,
+  },
 })

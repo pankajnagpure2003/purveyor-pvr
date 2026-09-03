@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import logoHorizontal from '../assets/logo-horizontal.png'
+import logoHorizontal from '../assets/logo-horizontal.webp'
 
 const LINKS = [
   { label: 'Home', href: '#home' },

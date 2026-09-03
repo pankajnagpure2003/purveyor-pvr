@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Reveal from './Reveal'
 import Watermark from './Watermark'
-import coin from '../assets/coin.png'
+import coin from '../assets/coin.webp'
 
 const ADDRESS = '0x594bf3E0d6e297f0178d5daa1700B39f3d54f2fB'
 

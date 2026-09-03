@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 import Reveal from "./Reveal";
-import aboutVideo from "../assets/new.png";
+import aboutVideo from "../assets/new.webp";
 import Watermark from "./Watermark";
 
 const pillars = [

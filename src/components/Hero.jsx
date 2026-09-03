@@ -1,7 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
-import coin from '../assets/coin.png'
+import coin from '../assets/coin.webp'
 import CountUp from './CountUp'
 
 const headline = ['Powering', 'the', 'Future', 'of', 'Digital', 'Finance']
