@@ -77,7 +77,10 @@ export default function UseCases() {
   const current = CASES[active]
 
   return (
-    <section id="use-cases" className="relative overflow-hidden bg-ink-900/40 py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32">
+    <section
+  id="use-cases"
+  className="relative overflow-hidden bg-ink-900/40 py-8 sm:py-10 md:py-12 lg:py-16"
+>
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10">
 
         {/* SECTION HEADER */}

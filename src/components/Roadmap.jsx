@@ -41,7 +41,7 @@ export default function Roadmap() {
   const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1])
 
   return (
-    <section id="roadmap" className="relative py-28 lg:py-36 overflow-hidden">
+    <section id="roadmap" className="relative py-20 lg:py-100 overflow-hidden">
       <Watermark position="top-right" size={520} direction={1} />
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
        <Reveal variant="rise" className="max-w-3xl mb-20 text-left">

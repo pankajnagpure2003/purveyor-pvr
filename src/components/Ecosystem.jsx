@@ -56,7 +56,7 @@ export default function Ecosystem() {
   return (
     <section
       id="ecosystem"
-      className="relative overflow-hidden bg-ink-900/40 py-28 lg:py-100"
+      className="relative overflow-hidden bg-ink-900/40 py-20 lg:py-100"
     >
       <Watermark
         position="bottom-left"

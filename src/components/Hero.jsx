@@ -9,7 +9,7 @@ const headline = ['Powering', 'the', 'Future', 'of', 'Digital', 'Finance']
 const stats = [
   { value: 1, suffix: 'B', label: 'Total Supply', mono: 'PVR' },
   { value: null, display: 'BSC', label: 'Blockchain Network', mono: 'BNB Chain' },
-  { value: null, display: 'FinTech + RWA', label: 'Core Focus', mono: '—' },
+  { value: null, display: 'RWA', label: 'Core Focus', mono: '—' },
   { value: 7, suffix: '', label: 'Token Precision', mono: 'Decimals' },
 ]
 

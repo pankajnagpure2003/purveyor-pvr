@@ -119,7 +119,7 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="relative overflow-hidden py-28 lg:py-100"
+      className="relative overflow-hidden py-50 lg:py-100"
     >
       <Watermark
         position="bottom-right"
@@ -127,7 +127,7 @@ export default function FAQ() {
         direction={-1}
       />
 
-      <div className="relative z-10 mx-auto max-w-4xl px-6 lg:px-10">
+      <div className="relative z-10 mx-auto max-w-5xl px-6 lg:px-10">
 
         {/* ================= HEADER ================= */}
 

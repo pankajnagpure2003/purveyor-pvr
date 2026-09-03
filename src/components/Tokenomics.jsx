@@ -60,7 +60,7 @@ function Donut() {
 
 export default function Tokenomics() {
   return (
-    <section id="tokenomics" className="relative py-28 lg:py-100 overflow-hidden">
+    <section id="tokenomics" className="relative py-50 lg:py-100 overflow-hidden">
       <Watermark position="top-left" size={500} direction={1} opacity={0.045} />
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
        <Reveal variant="rise" className="max-w-3xl mb-16 text-left">
