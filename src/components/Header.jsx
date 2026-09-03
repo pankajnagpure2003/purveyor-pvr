@@ -15,19 +15,38 @@ const LINKS = [
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
+  const [showHeader, setShowHeader] = useState(true)
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    let lastScrollY = window.scrollY
+
+    const onScroll = () => {
+      const currentScrollY = window.scrollY
+
+      setScrolled(currentScrollY > 24)
+
+      if (currentScrollY <= 80) {
+        setShowHeader(true)
+      } else if (currentScrollY > lastScrollY) {
+        setShowHeader(false)
+        setOpen(false)
+      } else if (currentScrollY < lastScrollY) {
+        setShowHeader(true)
+      }
+
+      lastScrollY = currentScrollY
+    }
 
     onScroll()
 
     window.addEventListener('scroll', onScroll, { passive: true })
 
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [])
 
-  // Logo click handler
   const handleLogoClick = (e) => {
     e.preventDefault()
 
@@ -44,99 +63,102 @@ export default function Header() {
         behavior: 'smooth',
       })
     }
+
+    setOpen(false)
+    setShowHeader(true)
   }
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${
-        scrolled
-          ? 'bg-ink-950/90 backdrop-blur-md border-b border-gold-500/10'
-          : 'bg-transparent'
-      }`}
+    <motion.header
+      initial={{ y: 0 }}
+      animate={{ y: showHeader ? 0 : '-100%' }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed left-0 right-0 top-0 z-50 ${scrolled ? 'border-b border-gold-500/10 bg-ink-950/90 backdrop-blur-xl' : 'bg-transparent'}`}
     >
-      <div className="mx-auto max-w-12xl px-6 lg:px-10 flex items-center justify-between h-20">
+      {/* HEADER CONTAINER */}
+      <div className="mx-auto flex h-20 w-full max-w-12xl items-center justify-between px-5 sm:px-6 lg:px-10">
 
         {/* LOGO */}
-        <a
-          href="#home"
-          onClick={handleLogoClick}
-          className="flex items-center shrink-0 group cursor-pointer"
-          aria-label="Go to Home"
-        >
-          <img
-            src={logoHorizontal}
-            alt="Purveyor PVR"
-            className="w-[180px] h-auto transition-transform duration-300 group-hover:scale-105"
-          />
+        <a href="#home" onClick={handleLogoClick} className="group flex shrink-0 cursor-pointer items-center" aria-label="Go to Home">
+          <img src={logoHorizontal} alt="Purveyor PVR" className="h-auto w-[150px] transition-transform duration-300 group-hover:scale-105 sm:w-[165px] lg:w-[180px]" />
         </a>
 
-        {/* DESKTOP NAV */}
-        <nav className="hidden lg:flex items-center gap-8">
+        {/* DESKTOP NAVIGATION */}
+        <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
           {LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="tracking-wide block py-2 px-3 text-white hover:bg-gray-700 md:hover:bg-transparent md:p-0 dark:border-gray-700 hover:text-[#f7b149] font-outfit"
-            >
+            <a key={link.href} href={link.href} className="group relative block px-1 py-2 font-outfit text-sm font-bold tracking-wide text-white transition-all duration-300 hover:-translate-y-[1px] hover:text-[#F7A00B]">
               {link.label}
+
+              <span className="absolute bottom-0 left-1/2 h-[1px] w-0 -translate-x-1/2 bg-gradient-to-r from-[#F7A00B] to-[#FFE08A] transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </nav>
 
-        {/* DESKTOP BUTTONS */}
-        <div className="hidden lg:flex items-center gap-3">
+        {/* DESKTOP CTA BUTTONS */}
+        <div className="hidden items-center gap-3 lg:flex">
 
-          <a
-            href="#faq"
-            className="text-sm px-4 py-2 rounded-full border border-bone/20 text-white hover:border-gold-400/60 hover:text-gold-300 transition-colors duration-200"
-          >
+          {/* WHITEPAPER */}
+          <a href="#faq" className="rounded-full border border-bone/20 px-4 py-2 font-outfit text-sm font-bold text-white transition-all duration-300 hover:border-[#F7A00B]/70 hover:bg-[#F7A00B]/5 hover:text-[#FFDFA3]">
             Whitepaper
           </a>
 
-          <a
+          {/* BUY NOW */}
+          <motion.a
             href="#contract"
-            className="btn-shimmer text-sm px-5 py-2 rounded-full bg-gold-400 text-ink-950 font-bold hover:bg-gold-300 transition-colors duration-200"
+            className="group relative isolate flex min-w-[112px] cursor-pointer items-center justify-center overflow-hidden rounded-full px-6 py-2.5 font-outfit text-sm font-bold text-[#17110A]"
+            style={{ background: 'linear-gradient(110deg, #A95F00 0%, #F7A00B 22%, #FFE08A 50%, #F7A00B 78%, #A95F00 100%)', backgroundSize: '250% 100%' }}
+            animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+            transition={{ backgroundPosition: { duration: 3.5, repeat: Infinity, ease: 'easeInOut' } }}
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95, y: 0 }}
           >
-            Buy Now
-          </a>
+            <motion.span
+              className="pointer-events-none absolute -inset-1 -z-10 rounded-full bg-[#F7A00B]/30 blur-md"
+              animate={{ opacity: [0.3, 0.75, 0.3], scale: [0.96, 1.08, 0.96] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+            />
 
+            <motion.span
+              className="pointer-events-none absolute inset-y-0 -left-[65%] z-0 w-[38%] skew-x-[-22deg] bg-gradient-to-r from-transparent via-white/70 to-transparent blur-[2px]"
+              animate={{ left: ['-65%', '135%'] }}
+              transition={{ duration: 2.1, repeat: Infinity, repeatDelay: 0.8, ease: 'easeInOut' }}
+            />
+
+            <span className="relative z-10">Buy Now</span>
+          </motion.a>
         </div>
 
         {/* MOBILE MENU BUTTON */}
         <button
-          className="lg:hidden text-bone p-2"
+          type="button"
+          className="flex items-center justify-center rounded-lg p-2 text-bone transition-colors hover:bg-white/5 lg:hidden"
           aria-label="Toggle menu"
           aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => {
+            setOpen((v) => !v)
+            setShowHeader(true)
+          }}
         >
-          <div className="w-6 flex flex-col gap-1.5">
-
+          <div className="flex w-6 flex-col gap-1.5">
             <motion.span
-              animate={{
-                rotate: open ? 45 : 0,
-                y: open ? 6 : 0,
-              }}
-              className="h-[1.5px] w-full bg-bone origin-center"
+              animate={{ rotate: open ? 45 : 0, y: open ? 6 : 0 }}
+              transition={{ duration: 0.25 }}
+              className="h-[1.5px] w-full origin-center bg-bone"
             />
 
             <motion.span
-              animate={{
-                opacity: open ? 0 : 1,
-              }}
+              animate={{ opacity: open ? 0 : 1, scaleX: open ? 0 : 1 }}
+              transition={{ duration: 0.2 }}
               className="h-[1.5px] w-full bg-bone"
             />
 
             <motion.span
-              animate={{
-                rotate: open ? -45 : 0,
-                y: open ? -6 : 0,
-              }}
-              className="h-[1.5px] w-full bg-bone origin-center"
+              animate={{ rotate: open ? -45 : 0, y: open ? -6 : 0 }}
+              transition={{ duration: 0.25 }}
+              className="h-[1.5px] w-full origin-center bg-bone"
             />
-
           </div>
         </button>
-
       </div>
 
       {/* MOBILE MENU */}
@@ -146,52 +168,71 @@ export default function Header() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{
-              duration: 0.3,
-              ease: 'easeInOut',
-            }}
-            className="lg:hidden overflow-hidden bg-ink-950 border-b border-gold-500/10"
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden border-b border-gold-500/10 bg-ink-950/95 backdrop-blur-xl lg:hidden"
           >
+            <div className="flex flex-col gap-1 px-6 py-6">
 
-            <div className="px-6 py-6 flex flex-col gap-4">
-
-              {LINKS.map((link) => (
-                <a
+              {/* MOBILE LINKS */}
+              {LINKS.map((link, i) => (
+                <motion.a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="text-base text-bone/80 hover:text-gold-300"
+                  onClick={() => {
+                    setOpen(false)
+                    setShowHeader(true)
+                  }}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.25, delay: i * 0.035 }}
+                  className="rounded-lg px-3 py-2.5 font-outfit text-base font-bold text-bone/85 transition-all duration-300 hover:bg-[#F7A00B]/5 hover:text-[#F7A00B]"
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
 
-              <div className="flex gap-3 pt-2">
+              {/* MOBILE CTA */}
+              <div className="flex gap-3 pt-4">
 
+                {/* WHITEPAPER */}
                 <a
                   href="#faq"
-                  onClick={() => setOpen(false)}
-                  className="flex-1 text-center text-sm px-4 py-2.5 rounded-full border border-bone/20 text-bone/80"
+                  onClick={() => {
+                    setOpen(false)
+                    setShowHeader(true)
+                  }}
+                  className="flex-1 rounded-full border border-bone/20 px-4 py-2.5 text-center font-outfit text-sm font-bold text-bone/85 transition-all duration-300 hover:border-[#F7A00B]/60 hover:text-[#FFDFA3]"
                 >
                   Whitepaper
                 </a>
 
-                <a
+                {/* MOBILE BUY NOW */}
+                <motion.a
                   href="#contract"
-                  onClick={() => setOpen(false)}
-                  className="flex-1 text-center text-sm px-4 py-2.5 rounded-full bg-gold-400 text-ink-950 font-medium"
+                  onClick={() => {
+                    setOpen(false)
+                    setShowHeader(true)
+                  }}
+                  className="relative isolate flex flex-1 items-center justify-center overflow-hidden rounded-full px-4 py-2.5 text-center font-outfit text-sm font-bold text-[#17110A]"
+                  style={{ background: 'linear-gradient(110deg, #A95F00 0%, #F7A00B 22%, #FFE08A 50%, #F7A00B 78%, #A95F00 100%)', backgroundSize: '250% 100%' }}
+                  animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  Buy Now
-                </a>
+                  <motion.span
+                    className="pointer-events-none absolute inset-y-0 -left-[65%] z-0 w-[38%] skew-x-[-22deg] bg-gradient-to-r from-transparent via-white/70 to-transparent blur-[2px]"
+                    animate={{ left: ['-65%', '135%'] }}
+                    transition={{ duration: 2.1, repeat: Infinity, repeatDelay: 0.8, ease: 'easeInOut' }}
+                  />
+
+                  <span className="relative z-10">Buy Now</span>
+                </motion.a>
 
               </div>
-
             </div>
-
           </motion.div>
         )}
       </AnimatePresence>
-
-    </header>
+    </motion.header>
   )
 }

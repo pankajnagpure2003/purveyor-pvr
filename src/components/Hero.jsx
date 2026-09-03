@@ -431,9 +431,179 @@ export default function Hero() {
             className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-10 sm:mb-14 md:mb-16"
           >
 
-           <a href="#contract" className="btn-shimmer w-full sm:w-auto px-5 py-3.5 rounded-full bg-gold-400 text-ink-950 font-semibold tracking-wide hover:bg-gold-300 transition-colors duration-200 text-center">
-  Buy PVR Now
-</a>
+           <motion.a
+  href="#contract"
+  className="
+    group
+    relative
+    isolate
+    flex
+    w-full
+    sm:w-auto
+    min-w-[160px]
+    items-center
+    justify-center
+    overflow-hidden
+    rounded-full
+    px-5
+    py-3.5
+    font-outfit
+    font-semibold
+    tracking-wide
+    text-[#17110A]
+    text-center
+    cursor-pointer
+  "
+  style={{
+    background:
+      'linear-gradient(110deg, #A95F00 0%, #F7A00B 22%, #FFE08A 50%, #F7A00B 78%, #A95F00 100%)',
+    backgroundSize: '250% 100%',
+  }}
+
+  /* Continuous golden gradient + glow */
+  animate={{
+    backgroundPosition: [
+      '0% 50%',
+      '100% 50%',
+      '0% 50%',
+    ],
+
+    boxShadow: [
+      '0 0 12px rgba(247,160,11,0.25)',
+      '0 0 28px rgba(247,160,11,0.65), 0 0 55px rgba(247,160,11,0.20)',
+      '0 0 12px rgba(247,160,11,0.25)',
+    ],
+  }}
+
+  transition={{
+    backgroundPosition: {
+      duration: 3.5,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
+
+    boxShadow: {
+      duration: 2.2,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
+  }}
+
+  /* Hover */
+  whileHover={{
+    scale: 1.06,
+    y: -2,
+    boxShadow:
+      '0 0 32px rgba(247,160,11,0.8), 0 0 70px rgba(247,160,11,0.3)',
+  }}
+
+  /* Click */
+  whileTap={{
+    scale: 0.96,
+    y: 0,
+  }}
+>
+  {/* =================================
+      OUTER GOLDEN AURA
+  ================================= */}
+
+  <motion.span
+    className="
+      pointer-events-none
+      absolute
+      -inset-1
+      -z-10
+      rounded-full
+      bg-[#F7A00B]/30
+      blur-md
+    "
+    animate={{
+      opacity: [0.3, 0.75, 0.3],
+      scale: [0.96, 1.08, 0.96],
+    }}
+    transition={{
+      duration: 2.2,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    }}
+  />
+
+  {/* =================================
+      MOVING LIGHT / SHINE
+  ================================= */}
+
+  <motion.span
+    className="
+      pointer-events-none
+      absolute
+      inset-y-0
+      -left-[65%]
+      z-0
+      w-[38%]
+      skew-x-[-22deg]
+      bg-gradient-to-r
+      from-transparent
+      via-white/70
+      to-transparent
+      blur-[2px]
+    "
+    animate={{
+      left: ['-65%', '135%'],
+    }}
+    transition={{
+      duration: 2.1,
+      repeat: Infinity,
+      repeatDelay: 0.8,
+      ease: 'easeInOut',
+    }}
+  />
+
+  {/* =================================
+      INNER BORDER
+  ================================= */}
+
+  <motion.span
+    className="
+      pointer-events-none
+      absolute
+      inset-[1px]
+      rounded-full
+      border
+      border-white/25
+    "
+    animate={{
+      opacity: [0.25, 0.85, 0.25],
+    }}
+    transition={{
+      duration: 1.8,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    }}
+  />
+
+  {/* =================================
+      BUTTON TEXT
+  ================================= */}
+
+  <motion.span
+    className="relative z-10"
+    animate={{
+      letterSpacing: [
+        '0.01em',
+        '0.035em',
+        '0.01em',
+      ],
+    }}
+    transition={{
+      duration: 2.4,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    }}
+  >
+    Buy PVR Now
+  </motion.span>
+
+</motion.a>
 
             <a
               href="#faq"
