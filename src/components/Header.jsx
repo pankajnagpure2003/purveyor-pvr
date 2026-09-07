@@ -104,7 +104,7 @@ export default function Header() {
 
           {/* BUY NOW */}
           <motion.a
-            href="#contract"
+            href="https://stately-cactus-ebdb2d.netlify.app"
             className="group relative isolate flex min-w-[112px] cursor-pointer items-center justify-center overflow-hidden rounded-full px-6 py-2.5 font-outfit text-sm font-bold text-[#17110A]"
             style={{ background: 'linear-gradient(110deg, #A95F00 0%, #F7A00B 22%, #FFE08A 50%, #F7A00B 78%, #A95F00 100%)', backgroundSize: '250% 100%' }}
             animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
@@ -208,7 +208,7 @@ export default function Header() {
 
                 {/* MOBILE BUY NOW */}
                 <motion.a
-                  href="#contract"
+                  href="https://stately-cactus-ebdb2d.netlify.app"
                   onClick={() => {
                     setOpen(false)
                     setShowHeader(true)

@@ -585,7 +585,7 @@ export default function Hero() {
       BUTTON TEXT
   ================================= */}
 
-  <motion.span
+  {/* <motion.span
     className="relative z-10"
     animate={{
       letterSpacing: [
@@ -601,7 +601,23 @@ export default function Hero() {
     }}
   >
     Buy PVR Now
-  </motion.span>
+  </motion.span> */}
+  <motion.a
+                  href="https://stately-cactus-ebdb2d.netlify.app"
+                  onClick={() => {
+                    setOpen(false)
+                    setShowHeader(true)
+                  }}
+                 
+                >
+                  <motion.span
+                    className="pointer-events-none absolute inset-y-0 -left-[65%] z-0 w-[38%] skew-x-[-22deg] bg-gradient-to-r from-transparent via-white/70 to-transparent blur-[2px]"
+                    animate={{ left: ['-65%', '135%'] }}
+                    transition={{ duration: 2.1, repeat: Infinity, repeatDelay: 0.8, ease: 'easeInOut' }}
+                  />
+
+                  <span className="relative z-10">Buy PVR Now</span>
+                </motion.a>
 
 </motion.a>
 
